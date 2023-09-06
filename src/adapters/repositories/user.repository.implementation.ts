@@ -15,12 +15,32 @@ export class UserRepositoryImpl implements UserRepository {
         username: user.username,
         fullName: user.fullName,
         password: user.password,
+        email: user.email,
       },
     });
     return User.createNewUser(
       createdUser.username,
       createdUser.password,
-      createdUser.fullName
+      createdUser.fullName,
+      createdUser.email,
+      createdUser.id.toString()
+    );
+  }
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return User.createNewUser(
+      user.username,
+      user.password,
+      user.fullName,
+      user.email,
+      user.id.toString()
     );
   }
 }
