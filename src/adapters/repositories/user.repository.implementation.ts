@@ -12,17 +12,15 @@ export class UserRepositoryImpl implements UserRepository {
   async create(user: CreateUserDTO): Promise<User> {
     const createdUser = await this.prisma.user.create({
       data: {
-        userName: user.userName,
+        username: user.username,
         fullName: user.fullName,
         password: user.password,
       },
     });
     return User.createNewUser(
-      createdUser.userName,
+      createdUser.username,
       createdUser.password,
       createdUser.fullName
     );
   }
-
-  // Other repository methods...
 }

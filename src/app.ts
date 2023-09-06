@@ -13,6 +13,6 @@ app.listen(process.env.PORT, () => {
 const repository = new UserRepositoryImpl();
 const userUseCase = new UserUseCaseImpl(repository);
 const userController = new UserController(userUseCase);
-app.post("/user", async (req, res) => {
-  await userController.createUser(req, res);
+app.post("/user", async (request, response) => {
+  await userController.createUser(request, response);
 });

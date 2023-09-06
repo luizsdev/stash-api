@@ -3,20 +3,17 @@ import { UserUseCase } from "../../core/application/ports/usecases/CreateUser.us
 export class UserController {
   constructor(private userUseCase: UserUseCase) {}
 
-  async createUser(request: Request, response: Response): Promise<any> {
-    const { userName, password, fullName } = request.body;
+  async createUser(request: Request, response: Response): Promise<Response> {
+    const { username, password, fullName } = request.body;
     try {
       const user = await this.userUseCase.save({
-        userName,
+        username,
         password,
         fullName,
       });
-      return response.status(201).json({
-        message: "Sucess",
-        user,
-      });
-    } catch (error) {
-      console.log(error);
+      return response.status(201).json(user);
+    } catch {
+      throw new Error();
     }
   }
 }
