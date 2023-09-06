@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserRepositoryImpl } from "../repositories/user.repository.implementation";
-import { User } from "../../core/domain/entitites/User";
+import { User } from "../../core/domain/User/User";
 import { Auth } from "../../core/domain/entitites/Auth/Auth";
 
 export class AuthController {

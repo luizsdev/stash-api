@@ -1,4 +1,4 @@
-import { User } from "../../../domain/entitites/User";
+import { User } from "../../../domain/User/User";
 import { CreateUserDTO } from "../../../dto/CreateUser.dto";
 import { UserRepository } from "../repositories/User.repository";
 
